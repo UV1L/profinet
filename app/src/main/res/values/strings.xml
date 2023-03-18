@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">profinet</string>
+    <string name="login_hello">Добро пожаловать!</string>
+</resources>
