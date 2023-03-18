@@ -66,6 +66,7 @@ class BaseErrorView @JvmOverloads constructor(
         )
         setText()
         addView(textView)
+        scaleY = 0f
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
