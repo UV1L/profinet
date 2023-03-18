@@ -91,6 +91,7 @@ class BaseErrorView @JvmOverloads constructor(
             .scaleY(0f)
             .setDuration(ANIMATION_LENGTH)
             .setInterpolator(INTERPOLATOR)
+            .setListener(null)
             .start()
     }
 

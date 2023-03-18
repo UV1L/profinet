@@ -1,4 +1,4 @@
-package anton.dev.profinet.presentation.common.ui
+package anton.dev.profinet.presentation.common.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
