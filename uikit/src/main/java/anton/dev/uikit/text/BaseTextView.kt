@@ -17,7 +17,6 @@ class BaseTextView @JvmOverloads constructor(
 ) : AppCompatTextView(context, attrs, defStyleAttr) {
 
     init {
-        text = "Добро пожаловать!"
         textAlignment = TEXT_ALIGNMENT_CENTER
         gravity = CENTER
         layoutParams = MarginLayoutParams(WRAP_CONTENT, WRAP_CONTENT)

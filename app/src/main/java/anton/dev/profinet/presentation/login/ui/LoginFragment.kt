@@ -2,6 +2,7 @@ package anton.dev.profinet.presentation.login.ui
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.viewbinding.ViewBinding
@@ -20,8 +21,8 @@ internal class LoginFragment : BaseHiltFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.errorButton.setOnClickListener {
-            errorViewHolder.showError()
+        binding.enterButton.setOnClickListener {
+            Toast.makeText(context, "Hello world!", Toast.LENGTH_SHORT).show()
         }
     }
 }
