@@ -30,4 +30,6 @@ abstract class BaseFragment<T: BaseViewModel> : Fragment(),
     }
 
     fun postEvent(navEvent: NavEvent) = eventsHandler.postEvent(navEvent)
+
+    fun showError() = errorViewHolder.showError()
 }

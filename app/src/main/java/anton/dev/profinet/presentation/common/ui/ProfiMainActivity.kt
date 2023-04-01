@@ -11,6 +11,7 @@ import anton.dev.profinet.presentation.common.navigation.NavEvent
 import anton.dev.profinet.presentation.common.navigation.NavEventsHandler
 import anton.dev.profinet.presentation.common.navigation.NavHostFragmentHolder
 import dagger.hilt.android.AndroidEntryPoint
+import java.lang.ref.WeakReference
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -35,7 +36,7 @@ internal class ProfiMainActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         application.registerActivityLifecycleCallbacks(navEventsHandler)
         binding = ActivityProfiMainBinding.inflate(layoutInflater)
-        errorViewHolder.errorView = binding.errorView
+        errorViewHolder.errorView = WeakReference(binding.errorView)
         setContentView(binding.root)
     }
 }
