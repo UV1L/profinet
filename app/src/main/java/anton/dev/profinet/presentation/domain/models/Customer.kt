@@ -7,7 +7,7 @@ data class Customer(
     val id: String,//наверное может быть uid из firebase auth
     val name: String,
     val sex: Sex? = null,
-    val dateOfBirt: Date? = null,
+    val birthday: Date? = null,
     val language: Language? = null,//родной язык
     val aboutMe: String,
     val reviews: List<Review>,
