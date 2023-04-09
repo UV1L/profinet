@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.viewbinding.ViewBinding
 import anton.dev.profinet.R
@@ -15,7 +16,7 @@ import anton.dev.profinet.presentation.login.vm.LoginViewModel
 
 internal class LoginFragment : BaseHiltFragment() {
 
-    override val viewModel: LoginViewModel by viewModels()
+    override val viewModel: LoginViewModel by activityViewModels()
     override val layout: Int = R.layout.fragment_login
     override val binding: FragmentLoginBinding by lazy { FragmentLoginBinding.inflate(layoutInflater) }
 

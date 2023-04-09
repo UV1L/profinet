@@ -29,8 +29,8 @@
         android:id="@+id/login_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_3"
         android:layout_marginStart="@dimen/space_6"
+        android:layout_marginTop="@dimen/space_3"
         android:layout_marginEnd="@dimen/space_6"
         android:hint="@string/email_hint"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,39 +40,24 @@
         android:id="@+id/password_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_3"
         android:layout_marginStart="@dimen/space_6"
+        android:layout_marginTop="@dimen/space_3"
         android:layout_marginEnd="@dimen/space_6"
         android:hint="@string/password_hint"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/login_input" />
 
-    <LinearLayout
-        android:id="@+id/enter_container"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/enter_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
+        android:layout_marginTop="@dimen/space_3"
         android:layout_marginEnd="@dimen/space_6"
+        android:backgroundTint="@color/colorAccent"
+        android:text="@string/enter"
+        app:cornerRadius="@dimen/space_6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_input">
-
-        <anton.dev.uikit.text.BaseTextView
-            android:id="@+id/enter_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/enter"
-            android:textSize="16sp"
-            android:layout_marginEnd="@dimen/space_2" />
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/enter_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:enabled="false"
-            android:src="@drawable/login"
-            android:background="@android:color/transparent" />
-    </LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/password_input" />
 
     <anton.dev.uikit.text.BaseTextView
         android:id="@+id/no_account_yet"
@@ -80,8 +65,8 @@
         android:layout_height="wrap_content"
         android:alpha="0.5"
         android:text="@string/i_have_no_account"
-        app:layout_constraintBottom_toBottomOf="@+id/enter_container"
+        app:layout_constraintBottom_toBottomOf="@+id/enter_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/enter_container" />
+        app:layout_constraintTop_toTopOf="@+id/enter_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

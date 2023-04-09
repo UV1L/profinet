@@ -9,5 +9,16 @@
         android:id="@+id/loginFragment"
         android:name="anton.dev.profinet.presentation.login.ui.LoginFragment"
         android:label="LoginFragment"
-        tools:layout="@layout/fragment_login"/>
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/action_to_createAccountFragment"
+            app:destination="@id/createAccountFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/createAccountFragment"
+        android:name="anton.dev.profinet.presentation.login.ui.CreateAccountFragment"
+        android:label="CreateAccountFragment"
+        tools:layout="@layout/fragment_create_account" />
 </navigation>
