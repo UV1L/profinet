@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MutableLiveData
 import anton.dev.profinet.R
 import anton.dev.profinet.databinding.FragmentLoginBinding
@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 internal class LoginFragment : BaseHiltFragment(), OnCompleteListener<AuthResult> {
 
-    override val viewModel: LoginViewModel by viewModels()
+    override val viewModel: LoginViewModel by activityViewModels()
     override val layout: Int = R.layout.fragment_login
     override val binding: FragmentLoginBinding by lazy { FragmentLoginBinding.inflate(layoutInflater) }
 
