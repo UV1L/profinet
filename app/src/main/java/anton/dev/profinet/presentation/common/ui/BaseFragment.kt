@@ -20,14 +20,11 @@ abstract class BaseFragment<T: BaseViewModel> : Fragment(),
     protected open val binding: ViewBinding? = null
 
     @Inject
-    lateinit var eventsHandler: NavEventsHandler
-
-    @Inject
     lateinit var errorViewHolder: ErrorViewHolder
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return binding?.root ?: inflater.inflate(layout, container, false)
     }
 
-    fun postEvent(navEvent: NavEvent) = eventsHandler.postEvent(navEvent)
+    fun showError() = errorViewHolder.showError()
 }
