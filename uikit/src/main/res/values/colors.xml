@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="light_alert_red">#ED4646</color>
+    <color name="colorPrimary">#292229</color>
+    <color name="colorPrimaryVariant">#bfbdbf</color>
+    <color name="colorAccent">#fbba1c</color>
+    <color name="colorAccentVariant">#feeabb</color>
+    <color name="colorBackground">#f3f3f3</color>
+    <color name="colorWarning">#ed4646</color>
+    <color name="colorWarningVariant">#fac8c8</color>
 </resources>

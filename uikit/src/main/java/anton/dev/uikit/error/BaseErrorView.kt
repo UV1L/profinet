@@ -60,7 +60,7 @@ class BaseErrorView @JvmOverloads constructor(
         pivotY = 0f
         setBackgroundColor(
             resources.getColor(
-                R.color.light_alert_red,
+                R.color.colorWarning,
                 context.theme
             )
         )
