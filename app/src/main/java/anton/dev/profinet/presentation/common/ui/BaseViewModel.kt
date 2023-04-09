@@ -7,6 +7,7 @@ import androidx.lifecycle.LifecycleRegistry
 import androidx.lifecycle.ViewModel
 import anton.dev.profinet.presentation.common.navigation.NavEvent
 import anton.dev.profinet.presentation.common.navigation.NavEventsHandler
+import anton.dev.profinet.presentation.common.navigation.ViewEvent
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -33,5 +34,7 @@ abstract class BaseViewModel : ViewModel(),
 
     final override fun getLifecycle(): Lifecycle = lifecycleRegistry
 
-    fun postEvent(navEvent: NavEvent) = eventsHandler.postEvent(navEvent)
+    fun postEvent(navEvent: NavEvent) = eventsHandler.postNavEvent(navEvent)
+
+    fun postEvent(viewEvent: ViewEvent) = eventsHandler.postViewEvent(viewEvent)
 }

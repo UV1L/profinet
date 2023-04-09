@@ -7,5 +7,8 @@ class ErrorViewHolder {
 
     lateinit var errorView: WeakReference<BaseErrorView>
 
-    fun showError() = errorView.get()?.expand()
+    fun showError(message: String?) {
+        message?.let { errorView.get()?.errorText = it }
+        errorView.get()?.expand()
+    }
 }

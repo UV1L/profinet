@@ -15,42 +15,22 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 
-internal class LoginFragment : BaseHiltFragment(), OnCompleteListener<AuthResult> {
+internal class LoginFragment : BaseHiltFragment() {
 
     override val viewModel: LoginViewModel by activityViewModels()
     override val layout: Int = R.layout.fragment_login
     override val binding: FragmentLoginBinding by lazy { FragmentLoginBinding.inflate(layoutInflater) }
 
-    private val auth = FirebaseAuth.getInstance()
-    private val email = MutableLiveData<String>()
-    private val password = MutableLiveData<String>()
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.enterButton.setOnClickListener {
-            Toast.makeText(context, "Hello world!", Toast.LENGTH_SHORT).show()
-            login()
-        }
+        binding.enterButton.setOnClickListener { viewModel.login() }
+        binding.noAccountYet.setOnClickListener { viewModel.toCreateAccount() }
 
         binding.emailInput.doOnTextChanged { text, _, _, _ ->
-            email.value = text.toString()
+            viewModel.email.value = text.toString()
         }
         binding.passwordInput.doOnTextChanged { text, _, _, _ ->
-            password.value = text.toString()
-        }
-    }
-
-    fun login() = runCatching {
-        auth.signInWithEmailAndPassword(email.value!!, password.value!!).addOnCompleteListener(this)
-    }.onFailure {
-        showError()
-    }
-
-    override fun onComplete(authTask: Task<AuthResult>) {
-        if (authTask.isSuccessful) {
-            val user = auth.currentUser
-        } else {
-            showError()
+            viewModel.password.value = text.toString()
         }
     }
 }

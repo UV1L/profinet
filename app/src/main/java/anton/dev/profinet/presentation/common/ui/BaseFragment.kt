@@ -24,5 +24,5 @@ abstract class BaseFragment<T: BaseViewModel> : Fragment(),
         return binding?.root ?: inflater.inflate(layout, container, false)
     }
 
-    fun showError() = errorViewHolder.showError()
+    fun showError(message: String? = null) = errorViewHolder.showError(message)
 }
