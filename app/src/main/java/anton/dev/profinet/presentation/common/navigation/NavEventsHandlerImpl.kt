@@ -13,17 +13,8 @@ import kotlinx.coroutines.launch
 
 internal class NavEventsHandlerImpl : NavEventsHandler {
 
-    private val _navEvents = MutableSharedFlow<NavEvent>(
-        replay = 1,
-        extraBufferCapacity = 0,
-        onBufferOverflow = BufferOverflow.SUSPEND
-    )
-
-    private val _viewEvents = MutableSharedFlow<ViewEvent>(
-        replay = 1,
-        extraBufferCapacity = 0,
-        onBufferOverflow = BufferOverflow.SUSPEND
-    )
+    private val _navEvents = MutableSharedFlow<NavEvent>(extraBufferCapacity = 1)
+    private val _viewEvents = MutableSharedFlow<ViewEvent>(extraBufferCapacity = 1)
 
     override fun handleEvent(activity: AppCompatActivity, navEvent: NavEvent) {
         (activity as ProfiMainActivity).navHostFragment?.let(navEvent::navigate)

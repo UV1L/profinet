@@ -1,6 +1,7 @@
 package anton.dev.profinet.presentation.login.vm
 
 import androidx.lifecycle.MutableLiveData
+import anton.dev.profinet.R
 import anton.dev.profinet.presentation.common.navigation.NavEvent
 import anton.dev.profinet.presentation.common.navigation.ViewEvent
 import anton.dev.profinet.presentation.common.ui.BaseViewModel
@@ -28,7 +29,7 @@ internal class LoginViewModel @Inject constructor() : BaseViewModel(),
     }
 
     fun toCreateAccount() = postEvent(
-        NavEvent.To(LoginFragmentDirections.actionToCreateAccountFragment().actionId, null)
+        NavEvent.To(R.id.action_to_createAccountFragment, null)
     )
 
     private fun showInvalidLoginOrPasswordError() = postEvent(
