@@ -5,6 +5,13 @@
     android:id="@+id/nav_app"
     app:startDestination="@id/loginFragment">
 
+    <action
+        android:id="@+id/action_global_to_mainScreenFragment"
+        app:destination="@id/mainScreenFragment"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/nav_app"
+        app:popUpToInclusive="true" />
+
     <fragment
         android:id="@+id/loginFragment"
         android:name="anton.dev.profinet.presentation.login.ui.LoginFragment"
@@ -18,7 +25,14 @@
 
     <fragment
         android:id="@+id/createAccountFragment"
-        android:name="anton.dev.profinet.presentation.login.ui.CreateAccountFragment"
+        android:name="anton.dev.profinet.presentation.create_account.ui.CreateAccountFragment"
         android:label="CreateAccountFragment"
-        tools:layout="@layout/fragment_create_account" />
+        tools:layout="@layout/fragment_create_account">
+    </fragment>
+
+    <fragment
+        android:id="@+id/mainScreenFragment"
+        android:name="anton.dev.profinet.presentation.main_screen.ui.MainScreenFragment"
+        android:label="MainScreenFragment"
+        tools:layout="@layout/fragment_main_screen" />
 </navigation>

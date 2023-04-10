@@ -5,7 +5,6 @@ import anton.dev.profinet.R
 import anton.dev.profinet.presentation.common.navigation.NavEvent
 import anton.dev.profinet.presentation.common.navigation.ViewEvent
 import anton.dev.profinet.presentation.common.ui.BaseViewModel
-import anton.dev.profinet.presentation.login.ui.LoginFragmentDirections
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
@@ -18,27 +17,39 @@ internal class LoginViewModel @Inject constructor() : BaseViewModel(),
     OnCompleteListener<AuthResult> {
 
     private val auth = FirebaseAuth.getInstance()
+    private val canClick = MutableLiveData(true)
 
     val email = MutableLiveData<String>()
     val password = MutableLiveData<String>()
 
     fun login() = runCatching {
-        auth.signInWithEmailAndPassword(email.value!!, password.value!!).addOnCompleteListener(this)
+        if (canClick.value == true) {
+            auth.signInWithEmailAndPassword(email.value!!, password.value!!)
+                .addOnCompleteListener(this)
+            canClick.value = false
+        }
     }.onFailure {
         showInvalidLoginOrPasswordError()
     }
 
     fun toCreateAccount() = postEvent(
-        NavEvent.To(R.id.action_to_createAccountFragment, null)
+        NavEvent.To(R.id.action_to_createAccountFragment)
     )
 
     private fun showInvalidLoginOrPasswordError() = postEvent(
-        ViewEvent.ShowError("Неверный логин или пароль")
+        ViewEvent.ShowError(
+            context.getString(R.string.incorrect_login_or_password)
+        )
+    )
+
+    private fun toMainScreen() = postEvent(
+        NavEvent.To(R.id.action_global_to_mainScreenFragment, inclusive = true)
     )
 
     override fun onComplete(authTask: Task<AuthResult>) {
+        canClick.value = true
         if (authTask.isSuccessful) {
-            val user = auth.currentUser
+            toMainScreen()
         } else {
             showInvalidLoginOrPasswordError()
         }

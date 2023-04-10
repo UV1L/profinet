@@ -3,6 +3,7 @@
     <string name="login_hello">Добро пожаловать!</string>
     <string name="login_enter_login_password_please">Введите ваши данные для входа</string>
     <string name="email_hint">E-mail</string>
+    <string name="fio_hint">ФИО</string>
     <string name="password_hint">Пароль</string>
     <string name="enter">Войти</string>
     <string name="i_have_no_account">у меня нет аккаунта</string>

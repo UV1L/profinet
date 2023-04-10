@@ -2,22 +2,16 @@ package anton.dev.profinet.presentation.login.ui
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
-import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.MutableLiveData
+import androidx.fragment.app.viewModels
 import anton.dev.profinet.R
 import anton.dev.profinet.databinding.FragmentLoginBinding
 import anton.dev.profinet.presentation.common.ui.BaseHiltFragment
 import anton.dev.profinet.presentation.login.vm.LoginViewModel
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.AuthResult
-import com.google.firebase.auth.FirebaseAuth
 
 internal class LoginFragment : BaseHiltFragment() {
 
-    override val viewModel: LoginViewModel by activityViewModels()
+    override val viewModel: LoginViewModel by viewModels()
     override val layout: Int = R.layout.fragment_login
     override val binding: FragmentLoginBinding by lazy { FragmentLoginBinding.inflate(layoutInflater) }
 

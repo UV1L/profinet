@@ -44,6 +44,8 @@
         android:layout_marginTop="@dimen/space_3"
         android:layout_marginEnd="@dimen/space_6"
         android:hint="@string/password_hint"
+        android:inputType="textPassword"
+        app:passwordToggleEnabled="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/email_input" />
 

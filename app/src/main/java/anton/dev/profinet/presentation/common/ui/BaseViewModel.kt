@@ -1,5 +1,8 @@
 package anton.dev.profinet.presentation.common.ui
 
+import android.annotation.SuppressLint
+import android.app.Application
+import android.content.Context
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -8,6 +11,7 @@ import androidx.lifecycle.ViewModel
 import anton.dev.profinet.presentation.common.navigation.NavEvent
 import anton.dev.profinet.presentation.common.navigation.NavEventsHandler
 import anton.dev.profinet.presentation.common.navigation.ViewEvent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -23,6 +27,11 @@ abstract class BaseViewModel : ViewModel(),
     @Inject
     lateinit var eventsHandler: NavEventsHandler
 
+    @SuppressLint("StaticFieldLeak")
+    @Inject
+    @ApplicationContext
+    lateinit var context: Context
+
     private val lifecycleRegistry by lazy { LifecycleRegistry(this) }
 
     final override val coroutineContext: CoroutineContext =
@@ -33,6 +42,8 @@ abstract class BaseViewModel : ViewModel(),
     protected open fun handleCoroutineException(exception: Throwable) = Unit
 
     final override fun getLifecycle(): Lifecycle = lifecycleRegistry
+
+    fun onBackPressed() = postEvent(NavEvent.Back)
 
     fun postEvent(navEvent: NavEvent) = eventsHandler.postNavEvent(navEvent)
 

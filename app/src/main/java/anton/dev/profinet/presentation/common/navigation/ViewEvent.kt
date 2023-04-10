@@ -5,7 +5,7 @@ import anton.dev.profinet.presentation.common.ui.BaseFragment
 
 fun interface ViewEvent {
 
-    class ShowError(private val message: String?) : ViewEvent {
+    class ShowError(private val message: String? = null) : ViewEvent {
 
         override fun execute(fragment: Fragment) {
             (fragment as? BaseFragment<*>)?.showError(message)

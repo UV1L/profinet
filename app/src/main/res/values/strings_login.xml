@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="incorrect_login_or_password">Неверный логин или пароль</string>
+    <string name="incorrect_fio">ФИО должно состоять из 2-х и более слов</string>
+    <string name="fio_regex">\\w+\\s\\w+[\\s\\w+]+</string>
+</resources>
