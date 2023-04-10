@@ -7,5 +7,9 @@ interface NavEventsHandler : ActivityLifecycleCallbacksOwner {
 
     fun handleEvent(activity: AppCompatActivity, navEvent: NavEvent)
 
-    fun postEvent(navEvent: NavEvent)
+    fun handleEvent(activity: AppCompatActivity, viewEvent: ViewEvent)
+
+    fun postNavEvent(navEvent: NavEvent)
+
+    fun postViewEvent(viewEvent: ViewEvent)
 }

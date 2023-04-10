@@ -57,7 +57,7 @@ class BaseErrorView @JvmOverloads constructor(
     init {
         orientation = VERTICAL
         gravity = Gravity.CENTER
-        pivotY = 0f
+        pivotY = defaultHeight.toFloat()
         setBackgroundColor(
             resources.getColor(
                 R.color.colorWarning,
