@@ -29,12 +29,8 @@ internal class ProfiMainActivity : AppCompatActivity(),
     @Inject
     lateinit var errorViewHolder: ErrorViewHolder
 
-    @Inject
-    lateinit var navEventsHandler: NavEventsHandler
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        application.registerActivityLifecycleCallbacks(navEventsHandler)
         binding = ActivityProfiMainBinding.inflate(layoutInflater)
         errorViewHolder.errorView = WeakReference(binding.errorView)
         setContentView(binding.root)

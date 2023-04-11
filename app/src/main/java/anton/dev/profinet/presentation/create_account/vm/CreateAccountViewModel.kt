@@ -2,6 +2,7 @@ package anton.dev.profinet.presentation.create_account.vm
 
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import anton.dev.profinet.R
 import anton.dev.profinet.presentation.common.ext.combineWith
 import anton.dev.profinet.presentation.common.ext.map
@@ -9,16 +10,20 @@ import anton.dev.profinet.presentation.common.ext.plus
 import anton.dev.profinet.presentation.common.navigation.NavEvent
 import anton.dev.profinet.presentation.common.navigation.ViewEvent
 import anton.dev.profinet.presentation.common.ui.BaseViewModel
+import anton.dev.profinet.presentation.data.Repository
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-internal class CreateAccountViewModel @Inject constructor() : BaseViewModel(),
+internal class CreateAccountViewModel @Inject constructor(
+    private val repo: Repository
+) : BaseViewModel(),
     OnCompleteListener<AuthResult> {
 
     private val auth = FirebaseAuth.getInstance()
@@ -50,6 +55,12 @@ internal class CreateAccountViewModel @Inject constructor() : BaseViewModel(),
         NavEvent.To(R.id.action_global_to_mainScreenFragment, inclusive = true)
     )
 
+    private fun updateCustomer() {
+        viewModelScope.launch {
+            val customer = repo.currentCustomer()
+        }
+    }
+
     override fun onComplete(authTask: Task<AuthResult>) {
         if (authTask.isSuccessful) {
             val user = auth.currentUser
@@ -57,7 +68,10 @@ internal class CreateAccountViewModel @Inject constructor() : BaseViewModel(),
                 .setDisplayName(fio.value)
                 .build()
             user?.updateProfile(profileUpdates)?.addOnCompleteListener {
-                if (it.isSuccessful) toMainScreen()
+                if (it.isSuccessful) {
+                    updateCustomer()
+                    toMainScreen()
+                }
             }
         } else {
             postEvent(ViewEvent.ShowError())

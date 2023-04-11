@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import anton.dev.profinet.R
 import anton.dev.profinet.databinding.FragmentLoginBinding
 import anton.dev.profinet.presentation.common.ui.BaseHiltFragment

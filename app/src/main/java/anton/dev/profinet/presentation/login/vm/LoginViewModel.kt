@@ -61,13 +61,16 @@ internal class LoginViewModel @Inject constructor(
         NavEvent.To(R.id.action_global_to_mainScreenFragment, inclusive = true)
     )
 
+    private fun updateCustomer() {
+        viewModelScope.launch {
+            val customer = repo.currentCustomer()
+        }
+    }
+
     override fun onComplete(authTask: Task<AuthResult>) {
         canClick.value = true
         if (authTask.isSuccessful) {
-            viewModelScope.launch {
-                val c = repo.currentCustomer()
-                val sadas = ""
-            }
+            updateCustomer()
             toMainScreen()
         } else {
             showInvalidLoginOrPasswordError()

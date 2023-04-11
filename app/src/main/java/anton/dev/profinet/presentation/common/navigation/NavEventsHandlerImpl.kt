@@ -1,27 +1,21 @@
 package anton.dev.profinet.presentation.common.navigation
 
-import android.app.Activity
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import anton.dev.profinet.presentation.common.ui.ProfiMainActivity
+import anton.dev.profinet.presentation.common.ui.BaseFragment
 import anton.dev.profinet.presentation.common.ui.currentFragment
-import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 
 internal class NavEventsHandlerImpl : NavEventsHandler {
 
     private val _navEvents = MutableSharedFlow<NavEvent>(extraBufferCapacity = 1)
     private val _viewEvents = MutableSharedFlow<ViewEvent>(extraBufferCapacity = 1)
 
-    override fun handleEvent(activity: AppCompatActivity, navEvent: NavEvent) {
-        (activity as ProfiMainActivity).navHostFragment?.let(navEvent::navigate)
+    override fun handleEvent(fragment: BaseFragment<*>, navEvent: NavEvent) {
+        fragment.navHostFragment?.let(navEvent::navigate)
     }
 
-    override fun handleEvent(activity: AppCompatActivity, viewEvent: ViewEvent) {
-        (activity as ProfiMainActivity).navHostFragment?.currentFragment()?.let(viewEvent::execute)
+    override fun handleEvent(fragment: BaseFragment<*>, viewEvent: ViewEvent) {
+        fragment.navHostFragment?.currentFragment()?.let(viewEvent::execute)
     }
 
     override fun postNavEvent(navEvent: NavEvent) {
@@ -32,15 +26,15 @@ internal class NavEventsHandlerImpl : NavEventsHandler {
         _viewEvents.tryEmit(viewEvent)
     }
 
-    override fun onActivityResumed(activity: Activity) = with(activity as AppCompatActivity) {
-        lifecycleScope.launch {
+    override fun collectFlow(fragment: BaseFragment<*>) = with(fragment.viewLifecycleOwner.lifecycleScope) {
+        launchWhenStarted {
             _navEvents.collect {
-                handleEvent(activity, it)
+                handleEvent(fragment, it)
             }
         }
-        lifecycleScope.launch {
+        launchWhenStarted {
             _viewEvents.collect {
-                handleEvent(activity, it)
+                handleEvent(fragment, it)
             }
         }
 
