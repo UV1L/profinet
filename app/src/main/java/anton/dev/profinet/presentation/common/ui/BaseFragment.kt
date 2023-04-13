@@ -43,6 +43,10 @@ abstract class BaseFragment<T: BaseViewModel> : Fragment(),
         }
     }
 
+    fun disableOnBackPressedCallback() {
+        onBackPressedCallback.isEnabled = false
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return binding?.root ?: inflater.inflate(layout, container, false)
     }

@@ -17,6 +17,7 @@
         android:id="@+id/create_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_4"
         android:text="@string/create_account"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"

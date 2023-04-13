@@ -58,7 +58,7 @@ internal class LoginViewModel @Inject constructor(
     )
 
     private fun toMainScreen() = postEvent(
-        NavEvent.To(R.id.action_global_to_mainScreenFragment, inclusive = true)
+        NavEvent.To(R.id.action_global_to_mainScreenFragment, popUpTo = R.id.loginFragment, inclusive = true)
     )
 
     private fun updateCustomer() {

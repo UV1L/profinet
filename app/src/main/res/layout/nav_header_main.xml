@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/nav_header_avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_3"
+        android:layout_marginTop="@dimen/space_3"
+        android:background="@drawable/circle_shape"
+        android:backgroundTint="@color/colorAccent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/nav_header_avatar_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:includeFontPadding="false"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@id/nav_header_avatar"
+        app:layout_constraintEnd_toEndOf="@id/nav_header_avatar"
+        app:layout_constraintStart_toStartOf="@id/nav_header_avatar"
+        app:layout_constraintTop_toTopOf="@id/nav_header_avatar"
+        tools:text="А" />
+
+    <anton.dev.uikit.text.BaseTextView
+        android:id="@+id/nav_header_username"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_3"
+        android:layout_marginEnd="@dimen/space_3"
+        android:ellipsize="end"
+        android:gravity="start"
+        android:maxLines="1"
+        android:textAlignment="viewStart"
+        app:layout_constraintBottom_toBottomOf="@+id/nav_header_avatar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/nav_header_avatar"
+        app:layout_constraintTop_toTopOf="@+id/nav_header_avatar"
+        app:textStyle="PRIMARY2"
+        tools:text="Антон Васянович" />
+</androidx.constraintlayout.widget.ConstraintLayout>

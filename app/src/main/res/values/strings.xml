@@ -9,4 +9,6 @@
     <string name="i_have_no_account">у меня нет аккаунта</string>
     <string name="create_account">Создать аккаунт</string>
     <string name="create">Создать</string>
+    <string name="query_hint">Какую услугу вы ищете?</string>
+    <string name="logout">Выйти</string>
 </resources>

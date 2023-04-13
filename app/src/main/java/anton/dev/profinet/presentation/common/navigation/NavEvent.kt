@@ -14,6 +14,7 @@ fun interface NavEvent {
     class To(
         @IdRes private val resId: Int,
         private val args: Bundle? = null,
+        private val popUpTo: Int = -1,
         private val inclusive: Boolean = false,
     ) : NavEvent {
 
@@ -22,7 +23,7 @@ fun interface NavEvent {
                 enter = R.anim.enter_anim
                 exit = R.anim.exit_anim
             }
-            popUpTo(popUpToId) {
+            popUpTo(this@To.popUpTo) {
                 inclusive = this@To.inclusive
             }
         }

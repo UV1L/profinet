@@ -13,7 +13,8 @@
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:textStyle="PRIMARY" />
 
     <anton.dev.uikit.text.BaseTextView
         android:id="@+id/enter_login_password"
@@ -23,7 +24,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintVertical_bias="0.25"
+        app:textStyle="SECONDARY" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/email_input"
@@ -45,9 +47,9 @@
         android:layout_marginEnd="@dimen/space_6"
         android:hint="@string/password_hint"
         android:inputType="textPassword"
-        app:passwordToggleEnabled="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/email_input" />
+        app:layout_constraintTop_toBottomOf="@id/email_input"
+        app:passwordToggleEnabled="true" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/enter_button"
@@ -69,6 +71,7 @@
         android:text="@string/i_have_no_account"
         app:layout_constraintBottom_toBottomOf="@+id/enter_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/enter_button" />
+        app:layout_constraintTop_toTopOf="@+id/enter_button"
+        app:textStyle="HINT" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,6 +16,10 @@ internal class LoginFragment : BaseHiltFragment() {
     override val layout: Int = R.layout.fragment_login
     override val binding: FragmentLoginBinding by lazy { FragmentLoginBinding.inflate(layoutInflater) }
 
+    init {
+        disableOnBackPressedCallback()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.enterButton.setOnClickListener { viewModel.login() }

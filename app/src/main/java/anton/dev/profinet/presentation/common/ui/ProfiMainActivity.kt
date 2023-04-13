@@ -10,6 +10,7 @@ import anton.dev.profinet.databinding.ActivityProfiMainBinding
 import anton.dev.profinet.presentation.common.navigation.NavEvent
 import anton.dev.profinet.presentation.common.navigation.NavEventsHandler
 import anton.dev.profinet.presentation.common.navigation.NavHostFragmentHolder
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import java.lang.ref.WeakReference
 import javax.inject.Inject
@@ -24,6 +25,8 @@ internal class ProfiMainActivity : AppCompatActivity(),
     override val navController: NavController?
         get() = navHostFragment?.navController
 
+    private val auth = FirebaseAuth.getInstance()
+
     private lateinit var binding: ActivityProfiMainBinding
 
     @Inject
@@ -34,5 +37,12 @@ internal class ProfiMainActivity : AppCompatActivity(),
         binding = ActivityProfiMainBinding.inflate(layoutInflater)
         errorViewHolder.errorView = WeakReference(binding.errorView)
         setContentView(binding.root)
+        val inflater = navHostFragment!!.navController.navInflater
+        val graph = inflater.inflate(R.navigation.nav_app)
+        when (auth.currentUser) {
+            null -> graph.setStartDestination(R.id.loginFragment)
+            else -> graph.setStartDestination(R.id.mainScreenFragment)
+        }
+        navController?.graph = graph
     }
 }
