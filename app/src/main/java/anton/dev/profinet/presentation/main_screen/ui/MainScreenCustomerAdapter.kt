@@ -42,11 +42,10 @@ internal class MainScreenCustomerAdapter :
                 MotionEvent.ACTION_DOWN -> shrinkCard(v)
                 else -> expandCard(v)
             }
-            return@setOnTouchListener false
         }
     }
 
-    private fun shrinkCard(view: View) {
+    private fun shrinkCard(view: View): Boolean {
         view.animate().apply {
             scaleX(0.94f)
             scaleY(0.94f)
@@ -54,15 +53,18 @@ internal class MainScreenCustomerAdapter :
             interpolator = AccelerateDecelerateInterpolator()
         }.start()
 
+        return true
     }
 
-    private fun expandCard(view: View) {
+    private fun expandCard(view: View): Boolean {
         view.animate().apply {
             scaleX(1f)
             scaleY(1f)
             duration = 100L
             interpolator = AccelerateInterpolator()
         }.start()
+
+        return false
     }
 
     private class DiffCallback : DiffUtil.ItemCallback<CustomerListItem>() {
