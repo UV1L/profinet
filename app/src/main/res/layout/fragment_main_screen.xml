@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:openDrawer="start">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main_screen_content_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorBackground">
@@ -50,6 +50,50 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:queryBackground="@android:color/transparent" />
+
+        <anton.dev.uikit.text.BaseTextView
+            android:id="@+id/main_screen_customers_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/customers_title"
+            android:gravity="start"
+            android:textAlignment="viewStart"
+            android:paddingStart="@dimen/space_4"
+            android:paddingEnd="@dimen/space_4"
+            app:textStyle="PRIMARY2"
+            app:layout_constraintTop_toBottomOf="@id/main_screen_search_view"
+            android:layout_marginTop="@dimen/space_4"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/main_screen_customers_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/space_3"
+            android:paddingTop="@dimen/space_1"
+            android:paddingEnd="@dimen/space_3"
+            android:paddingBottom="@dimen/space_4"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/main_screen_customers_title"
+            tools:listitem="@layout/li_customer" />
+
+        <View
+            android:layout_width="@dimen/space_4"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@id/main_screen_customers_rv"
+            app:layout_constraintBottom_toBottomOf="@id/main_screen_customers_rv"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@drawable/fade_edge_2" />
+
+        <View
+            android:layout_width="@dimen/space_4"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@id/main_screen_customers_rv"
+            app:layout_constraintBottom_toBottomOf="@id/main_screen_customers_rv"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/fade_edge_1" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
@@ -81,10 +125,24 @@
             <anton.dev.uikit.text.BaseTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="0dp"
                 android:layout_marginEnd="@dimen/space_3"
+                android:paddingTop="1dp"
                 android:text="@string/logout"
                 app:textStyle="PRIMARY2" />
         </LinearLayout>
     </com.google.android.material.navigation.NavigationView>
+
+    <LinearLayout
+        android:id="@+id/main_screen_loading_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:gravity="center">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </LinearLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

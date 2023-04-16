@@ -5,6 +5,7 @@ plugins {
     id 'com.google.dagger.hilt.android'
     id 'com.google.gms.google-services'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -67,6 +68,10 @@ dependencies {
 
     implementation 'com.firebaseui:firebase-ui-auth:7.2.0'
     implementation 'com.google.android.gms:play-services-auth:20.4.1'
+
+    // LOCATION
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
+    implementation 'com.mapbox.search:mapbox-search-android-ui:1.0.0-rc.3'
 }
 
 kapt {

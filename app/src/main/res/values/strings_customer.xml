@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="customers_title">Специалисты</string>
+    <string name="customer_age">Возраст:  </string>
+    <string name="customer_experience">Стаж:  </string>
+    <string name="customer_speciality">Специализация:  </string>
+</resources>

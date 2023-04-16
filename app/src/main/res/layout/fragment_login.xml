@@ -9,6 +9,7 @@
         android:id="@+id/base_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_6"
         android:text="@string/login_hello"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,6 +21,7 @@
         android:id="@+id/enter_login_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_6"
         android:text="@string/login_enter_login_password_please"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,11 +69,12 @@
         android:id="@+id/no_account_yet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_6"
         android:alpha="0.5"
         android:text="@string/i_have_no_account"
         app:layout_constraintBottom_toBottomOf="@+id/enter_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/enter_button"
-        app:textStyle="HINT" />
+        app:textStyle="SECONDARY" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

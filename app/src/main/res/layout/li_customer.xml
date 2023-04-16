@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="180dp"
+    android:layout_height="150dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="5dp"
+    android:stateListAnimator="@null"
+    android:layout_marginTop="@dimen/space_2"
+    android:layout_marginBottom="@dimen/space_2"
+    android:layout_marginStart="@dimen/space_1"
+    android:layout_marginEnd="@dimen/space_1"
+    app:contentPadding="@dimen/space_2">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <anton.dev.uikit.text.BaseTextView
+            android:id="@+id/li_customer_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="Василий Иванович"
+            android:layout_marginBottom="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:textStyle="HINT" />
+
+        <LinearLayout
+            android:id="@+id/li_customer_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="3dp"
+            app:layout_constraintTop_toBottomOf="@id/li_customer_name"
+            app:layout_constraintStart_toStartOf="@id/li_customer_name"
+            app:layout_constraintEnd_toEndOf="@id/li_customer_name">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/li_customer_rating_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_star_24"
+                app:tint="@color/colorAccent" />
+
+            <anton.dev.uikit.text.BaseTextView
+                android:id="@+id/li_customer_rating_counter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:paddingTop="1dp"
+                android:alpha="0.5"
+                android:textSize="9sp"
+                tools:text="4.75" />
+        </LinearLayout>
+
+        <anton.dev.uikit.text.TextWithValue
+            android:id="@+id/li_customer_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:text="@string/customer_age"
+            app:layout_constraintBottom_toTopOf="@id/li_customer_experience"
+            app:layout_constraintStart_toStartOf="parent" />
+
+<!--        <anton.dev.uikit.text.BaseTextView-->
+<!--            android:id="@+id/li_customer_age"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:alpha="0.5"-->
+<!--            android:text="@string/customer_age"-->
+<!--            android:textSize="10sp"-->
+<!--            app:layout_constraintBottom_toTopOf="@id/li_customer_experience"-->
+<!--            app:layout_constraintStart_toStartOf="parent" />-->
+
+        <anton.dev.uikit.text.TextWithValue
+            android:id="@+id/li_customer_experience"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:text="@string/customer_experience"
+            app:layout_constraintBottom_toTopOf="@id/li_customer_speciality"
+            app:layout_constraintStart_toStartOf="parent" />
+
+<!--        <anton.dev.uikit.text.BaseTextView-->
+<!--            android:id="@+id/li_customer_experience"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:alpha="0.5"-->
+<!--            android:text="@string/customer_experience"-->
+<!--            android:textSize="10sp"-->
+<!--            app:layout_constraintBottom_toTopOf="@id/li_customer_speciality"-->
+<!--            app:layout_constraintStart_toStartOf="parent" />-->
+
+        <anton.dev.uikit.text.TextWithValue
+            android:id="@+id/li_customer_speciality"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:text="@string/customer_speciality"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+<!--        <anton.dev.uikit.text.BaseTextView-->
+<!--            android:id="@+id/li_customer_speciality"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/customer_speciality"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            android:alpha="0.5"-->
+<!--            android:textSize="10sp" />-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

@@ -8,6 +8,8 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
 import anton.dev.profinet.R
+import anton.dev.profinet.presentation.common.ui.BaseFragment
+import javax.inject.Inject
 
 fun interface NavEvent {
 
@@ -28,17 +30,26 @@ fun interface NavEvent {
             }
         }
 
-        override fun navigate(fragment: Fragment) {
+        override fun navigate(fragment: BaseFragment<*>) {
             fragment.findNavController().safeNavigate(resId, args, navOptions)
         }
     }
 
     object Back : NavEvent {
 
-        override fun navigate(fragment: Fragment) {
+        override fun navigate(fragment: BaseFragment<*>) {
             fragment.findNavController().popBackStack()
+
         }
     }
 
-    fun navigate(fragment: Fragment)
+    class BackWithResult(private val result: NavResult) : NavEvent {
+
+        override fun navigate(fragment: BaseFragment<*>) {
+            fragment.findNavController().popBackStack()
+            fragment.navEventsHandler.postNavResult(result)
+        }
+    }
+
+    fun navigate(fragment: BaseFragment<*>)
 }

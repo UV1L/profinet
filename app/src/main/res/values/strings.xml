@@ -11,4 +11,7 @@
     <string name="create">Создать</string>
     <string name="query_hint">Какую услугу вы ищете?</string>
     <string name="logout">Выйти</string>
+    <string name="your_city">Ваш город:  </string>
+    <string name="city_not_found">не удалось найти</string>
+    <string name="set_manually_hint">указать вручную</string>
 </resources>

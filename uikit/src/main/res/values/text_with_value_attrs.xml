@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TextWithValue">
+        <attr name="value" format="string" />
+        <attr name="text" format="string" />
+        <attr name="overallTextStyle" format="enum">
+            <enum name="PRIMARY" value="0"/>
+            <enum name="PRIMARY2" value="1"/>
+            <enum name="SECONDARY" value="2"/>
+            <enum name="HINT" value="3"/>
+            <enum name="UNDEFINED" value="4"/>
+        </attr>
+    </declare-styleable>
+</resources>

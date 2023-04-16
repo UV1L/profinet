@@ -45,4 +45,30 @@
         app:layout_constraintTop_toTopOf="@+id/nav_header_avatar"
         app:textStyle="PRIMARY2"
         tools:text="Антон Васянович" />
+
+    <anton.dev.uikit.text.TextWithValue
+        android:id="@+id/nav_header_city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_3"
+        android:paddingStart="@dimen/space_3"
+        android:paddingEnd="@dimen/space_3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nav_header_avatar"
+        app:overallTextStyle="PRIMARY2"
+        app:text="@string/your_city"
+        tools:text="Ваш город: Екатеринбург" />
+
+    <anton.dev.uikit.text.BaseTextView
+        android:id="@+id/nav_header_set_city_manually_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_3"
+        android:text="@string/set_manually_hint"
+        android:textColor="@color/colorActionText"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="@+id/nav_header_city"
+        app:layout_constraintTop_toBottomOf="@+id/nav_header_city"
+        app:textStyle="PRIMARY2" />
 </androidx.constraintlayout.widget.ConstraintLayout>
