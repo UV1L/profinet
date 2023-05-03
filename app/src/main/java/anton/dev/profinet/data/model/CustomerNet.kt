@@ -22,19 +22,19 @@ data class CustomerNet(
     val language: String? = null,
 
     @get:PropertyName("aboutMe")
-    val aboutMe: String = "",
+    val aboutMe: String? = null,
 
     @get:PropertyName("reviews")
     val reviews: List<ReviewNet> = listOf(),
 
     @get:PropertyName("rating")
-    val rating: Int = 0,
+    val rating: Int? = null,
 
     @get:PropertyName("qualifications")
     val qualifications: List<QualificationParamsNet> = listOf(),
 
     @get:PropertyName("address")
-    val address: String = ""
+    val address: String? = null
 ) {
 
     companion object PropertyNames {

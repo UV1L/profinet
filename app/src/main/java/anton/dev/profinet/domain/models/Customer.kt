@@ -9,14 +9,14 @@ data class Customer(
     val sex: Sex? = null,
     val birthday: Date? = null,
     val language: Language? = null,//родной язык
-    val aboutMe: String,
-    val reviews: List<Review>,
+    val aboutMe: String? = null,
+    val reviews: List<Review> = listOf(),
 
     @IntRange(from = 0, to = 10)
-    val rating: Int,
+    val rating: Int? = null,
 
-    val qualifications: List<QualificationParams>,
-    val address: String
+    val qualifications: List<QualificationParams> = listOf(),
+    val address: String? = null
 ) {
 
     //возраст в годах
