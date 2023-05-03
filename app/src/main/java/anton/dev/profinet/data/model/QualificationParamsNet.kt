@@ -1,4 +1,4 @@
-package anton.dev.profinet.presentation.data.model
+package anton.dev.profinet.data.model
 
 import com.google.firebase.database.PropertyName
 
@@ -12,6 +12,6 @@ data class QualificationParamsNet(
     @get:PropertyName("level")
     val level: Int? = null,
 
-    @get:PropertyName("carierStart")
-    val carierStart: String = ""
+    @get:PropertyName("experience")
+    val experience: Int? = null
 )

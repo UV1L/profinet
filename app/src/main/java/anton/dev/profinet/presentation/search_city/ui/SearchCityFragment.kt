@@ -3,6 +3,7 @@ package anton.dev.profinet.presentation.search_city.ui
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isGone
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import anton.dev.profinet.R
 import anton.dev.profinet.databinding.FragmentSearchCityBinding

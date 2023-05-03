@@ -3,5 +3,10 @@
     <string name="customers_title">Специалисты</string>
     <string name="customer_age">Возраст:  </string>
     <string name="customer_experience">Стаж:  </string>
-    <string name="customer_speciality">Специализация:  </string>
+    <string name="customer_qualifications">Специализации:  </string>
+    <string name="customer_settings_title">Настройки</string>
+    <string name="customer_settings_i_am_performer">Я являюсь специалистом</string>
+    <string name="customer_settings_save">Сохранить</string>
+    <string name="customer_settings_level">Уровень</string>
+    <string name="customer_rate">Оценить</string>
 </resources>

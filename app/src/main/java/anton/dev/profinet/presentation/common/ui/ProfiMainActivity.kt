@@ -1,14 +1,13 @@
 package anton.dev.profinet.presentation.common.ui
 
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import anton.dev.profinet.R
+import anton.dev.profinet.data.Repository
 import anton.dev.profinet.databinding.ActivityProfiMainBinding
-import anton.dev.profinet.presentation.common.navigation.NavEvent
-import anton.dev.profinet.presentation.common.navigation.NavEventsHandler
 import anton.dev.profinet.presentation.common.navigation.NavHostFragmentHolder
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint

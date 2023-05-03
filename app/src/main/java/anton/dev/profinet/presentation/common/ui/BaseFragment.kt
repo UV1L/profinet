@@ -52,6 +52,7 @@ abstract class BaseFragment<T: BaseViewModel> : Fragment(),
 
     @CallSuper
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        viewModel.arguments = arguments
         return binding?.root ?: inflater.inflate(layout, container, false)
     }
 

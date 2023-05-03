@@ -1,7 +1,10 @@
-package anton.dev.profinet.presentation.data.mapper
+package anton.dev.profinet.data.mapper
 
-import anton.dev.profinet.presentation.data.model.CustomerNet
-import anton.dev.profinet.presentation.domain.models.Customer
+import anton.dev.profinet.data.model.CustomerNet
+import anton.dev.profinet.domain.models.Customer
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
+import kotlin.coroutines.coroutineContext
 
 val Customer.asNet: CustomerNet
     get() = CustomerNet(

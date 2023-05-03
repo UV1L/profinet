@@ -1,31 +1,41 @@
-package anton.dev.profinet.presentation.data
+package anton.dev.profinet.data
 
-import anton.dev.profinet.presentation.data.mapper.asNet
-import anton.dev.profinet.presentation.data.mapper.fromNet
-import anton.dev.profinet.presentation.data.model.CustomerNet
-import anton.dev.profinet.presentation.data.model.ServiceNet
-import anton.dev.profinet.presentation.domain.models.Customer
-import anton.dev.profinet.presentation.domain.models.Service
-import anton.dev.profinet.presentation.domain.repositories.CustomerRepository
-import anton.dev.profinet.presentation.domain.repositories.ServicesRepository
+import anton.dev.profinet.data.mapper.asNet
+import anton.dev.profinet.data.mapper.fromNet
+import anton.dev.profinet.data.model.CustomerNet
+import anton.dev.profinet.data.model.ServiceNet
+import anton.dev.profinet.domain.models.Customer
+import anton.dev.profinet.domain.models.Service
+import anton.dev.profinet.domain.repositories.CustomerRepository
+import anton.dev.profinet.domain.repositories.ServicesRepository
+import com.google.android.gms.tasks.Task
+import com.google.android.gms.tasks.TaskCompletionSource
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.database.ktx.snapshots
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.concurrent.CountDownLatch
 import javax.inject.Inject
 import kotlin.coroutines.suspendCoroutine
 
 class Repository @Inject constructor() : ServicesRepository, CustomerRepository {
 
     private companion object {
+
         const val ServicesDBKey = "Services"
         const val CustomersDBKey = "Customers"
     }
@@ -62,6 +72,22 @@ class Repository @Inject constructor() : ServicesRepository, CustomerRepository 
                 .child(serviceId)
                 .child(ServiceNet.PropertyNames.PerformerCustomerId)
                 .setValue(performerCustomerId)
+        }
+    }
+
+    override suspend fun isCustomerExist(): Boolean {
+        if (FirebaseAuth.getInstance().currentUser == null) return false
+        return withContext(Dispatchers.IO) {
+            suspendCoroutine<DataSnapshot> { continuation ->
+                getCustomersDb()
+                    .child(FirebaseAuth.getInstance().currentUser!!.uid)
+                    .get()
+                    .addOnSuccessListener {
+                        continuation.resumeWith(
+                            Result.success(it)
+                        )
+                    }
+            }.getValue<CustomerNet>()?.fromNet != null
         }
     }
 

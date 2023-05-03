@@ -19,6 +19,7 @@ import anton.dev.profinet.presentation.common.navigation.NavEvent
 import anton.dev.profinet.presentation.common.ui.BaseHiltFragment
 import anton.dev.profinet.presentation.main_screen.vm.MainScreenViewModel
 import anton.dev.profinet.presentation.main_screen.vm.model.CustomerListItem
+import anton.dev.profinet.presentation.main_screen.vm.model.asListItem
 import kotlin.random.Random
 
 internal class MainScreenFragment : BaseHiltFragment() {
@@ -30,7 +31,7 @@ internal class MainScreenFragment : BaseHiltFragment() {
         NavHeaderMainBinding.inflate(layoutInflater, binding.navView, false)
     }
 
-    private val adapter = MainScreenCustomerAdapter()
+    private val adapter by lazy { MainScreenCustomerAdapter(viewModel) }
 
     private val locationPermissionRequest = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
@@ -92,30 +93,18 @@ internal class MainScreenFragment : BaseHiltFragment() {
         headerBinding.navHeaderSetCityManuallyHint.setOnClickListener {
             postEvent(NavEvent.To(R.id.action_to_searchCityFragment))
         }
+        headerBinding.navHeaderSettingsBtn.setOnClickListener {
+            postEvent(NavEvent.To(R.id.action_to_customerSettingsFragment))
+        }
     }
 
     private fun setCustomersRv() {
         binding.mainScreenCustomersRv.adapter = adapter
-        adapter.submitList(
-            listOf(
-                CustomerListItem(
-                    id = "1", name = "Василий Иванович", age = 44, experience = 19,
-                    rating = Random.nextDouble(0.0, 5.0), speciality = "Сантехник"
-                ),
-                CustomerListItem(
-                    id = "2", name = "Иван Васильевич", age = 25, experience = 4, rating = Random.nextDouble(0.0, 5.0),
-                    speciality = "Электрик"
-                ),
-                CustomerListItem(
-                    id = "3", name = "Влада Давыдова", age = 22, experience = 1, rating = 5.0,
-                    speciality = "Сантехник"
-                ),
-                CustomerListItem(
-                    id = "4", name = "Тест Тестерский", age = 37, experience = 12, rating = Random.nextDouble(0.0, 5.0),
-                    speciality = "Сантехник"
-                ),
+        viewModel.specialists.observe(viewLifecycleOwner) {
+            adapter.submitList(
+                it.map { it.asListItem() }
             )
-        )
+        }
     }
 
     private fun requestPermissions() {
@@ -132,7 +121,9 @@ internal class MainScreenFragment : BaseHiltFragment() {
             headerBinding.navHeaderCity.value = it ?: getString(R.string.city_not_found)
         }
         viewModel.isGpsOn.observe(viewLifecycleOwner) { isGpsOn ->
-            if (!isGpsOn) headerBinding.navHeaderCity.value = getString(R.string.city_not_found)
+            with(headerBinding.navHeaderCity) {
+                if (!isGpsOn && value.isEmpty()) value = getString(R.string.city_not_found)
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-package anton.dev.profinet.presentation.data.mapper
+package anton.dev.profinet.data.mapper
 
 import java.text.SimpleDateFormat
 import java.util.*

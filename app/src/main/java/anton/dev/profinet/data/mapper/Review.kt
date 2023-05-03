@@ -1,7 +1,7 @@
-package anton.dev.profinet.presentation.data.mapper
+package anton.dev.profinet.data.mapper
 
-import anton.dev.profinet.presentation.data.model.ReviewNet
-import anton.dev.profinet.presentation.domain.models.Review
+import anton.dev.profinet.data.model.ReviewNet
+import anton.dev.profinet.domain.models.Review
 
 val Review.asNet: ReviewNet
     get() = ReviewNet(
@@ -9,7 +9,8 @@ val Review.asNet: ReviewNet
     message = message
 )
 
-val ReviewNet.fromNet: Review get() = Review(
+val ReviewNet.fromNet: Review
+    get() = Review(
     customerId = customerId,
     message = message
 )

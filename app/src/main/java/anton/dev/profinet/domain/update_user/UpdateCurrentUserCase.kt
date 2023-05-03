@@ -1,4 +1,4 @@
-package anton.dev.profinet.presentation.domain.update_user
+package anton.dev.profinet.domain.update_user
 
 import com.google.firebase.auth.FirebaseUser
 

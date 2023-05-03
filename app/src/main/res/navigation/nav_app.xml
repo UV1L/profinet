@@ -38,8 +38,15 @@
 
         <action
             android:id="@+id/action_to_searchCityFragment"
-            app:destination="@id/searchCityFragment"
-            app:exitAnim="@anim/exit_anim"/>
+            app:destination="@id/searchCityFragment" />
+
+        <action
+            android:id="@+id/action_to_customerSettingsFragment"
+            app:destination="@id/customerSettingsFragment" />
+
+        <action
+            android:id="@+id/action_to_customerPublicProfileFragment"
+            app:destination="@id/customerPublicProfileFragment" />
     </fragment>
 
     <fragment
@@ -47,4 +54,21 @@
         android:name="anton.dev.profinet.presentation.search_city.ui.SearchCityFragment"
         android:label="SearchCityFragment"
         tools:layout="@layout/fragment_search_city" />
+
+    <fragment
+        android:id="@+id/customerSettingsFragment"
+        android:name="anton.dev.profinet.presentation.customer_settings.ui.CustomerSettingsFragment"
+        android:label="CustomerSettingsFragment"
+        tools:layout="@layout/fragment_customer_settings" />
+
+    <fragment
+        android:id="@+id/customerPublicProfileFragment"
+        android:name="anton.dev.profinet.presentation.customer_public_profile.ui.CustomerPublicProfileFragment"
+        android:label="CustomerPublicProfileFragment"
+        tools:layout="@layout/fragment_customer_public_profile">
+
+        <argument
+            android:name="customerListItem"
+            app:argType="anton.dev.profinet.presentation.main_screen.vm.model.CustomerListItem" />
+    </fragment>
 </navigation>

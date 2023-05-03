@@ -1,14 +1,14 @@
-package anton.dev.profinet.presentation.domain.models
+package anton.dev.profinet.domain.models
 
 import androidx.annotation.IntRange
 import java.util.*
 
 data class Customer(
-    val id: String,//наверное может быть uid из firebase auth
+    val id: String,
     val name: String,
     val sex: Sex? = null,
     val birthday: Date? = null,
-    val language: Language? = null,//родной язык
+    val language: Language? = null,
     val aboutMe: String? = null,
     val reviews: List<Review> = listOf(),
 
@@ -22,7 +22,11 @@ data class Customer(
     //возраст в годах
     val age by lazy {
         val calendarCurrent = Calendar.getInstance().apply { time = Date() }
-        val calendarDateOfBrith = Calendar.getInstance().apply { time = Date(0) }
+        val calendarDateOfBrith = Calendar.getInstance().apply {
+            if (birthday != null) {
+                time = birthday
+            }
+        }
         calendarCurrent.get(Calendar.YEAR) - calendarDateOfBrith.get(Calendar.YEAR)
     }
 }

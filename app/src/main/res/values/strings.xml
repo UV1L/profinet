@@ -6,6 +6,7 @@
     <string name="fio_hint">ФИО</string>
     <string name="password_hint">Пароль</string>
     <string name="enter">Войти</string>
+    <string name="birthday">День рождения</string>
     <string name="i_have_no_account">у меня нет аккаунта</string>
     <string name="create_account">Создать аккаунт</string>
     <string name="create">Создать</string>
@@ -14,4 +15,5 @@
     <string name="your_city">Ваш город:  </string>
     <string name="city_not_found">не удалось найти</string>
     <string name="set_manually_hint">указать вручную</string>
+    <string name="nothing_found">Ничего не найдено…</string>
 </resources>

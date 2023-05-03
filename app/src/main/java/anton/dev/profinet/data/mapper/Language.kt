@@ -1,6 +1,6 @@
-package anton.dev.profinet.presentation.data.mapper
+package anton.dev.profinet.data.mapper
 
-import anton.dev.profinet.presentation.domain.models.Language
+import anton.dev.profinet.domain.models.Language
 
 val Language.asString: String get() = name
 

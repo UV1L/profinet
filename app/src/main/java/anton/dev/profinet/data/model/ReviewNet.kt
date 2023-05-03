@@ -1,4 +1,4 @@
-package anton.dev.profinet.presentation.data.model
+package anton.dev.profinet.data.model
 
 import com.google.firebase.database.PropertyName
 

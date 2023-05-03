@@ -1,6 +1,7 @@
 package anton.dev.profinet.presentation.common.di
 
 import android.content.Context
+import android.location.Geocoder
 import anton.dev.profinet.presentation.common.navigation.NavEventsHandler
 import anton.dev.profinet.presentation.common.navigation.NavEventsHandlerImpl
 import anton.dev.profinet.presentation.common.ui.ErrorViewHolder
@@ -15,6 +16,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import java.util.Locale
 import java.util.logging.Logger
 import javax.inject.Singleton
 
@@ -38,4 +40,9 @@ internal class AppModule {
     @Provides
     @Singleton
     fun provideLogger(): Logger = Logger.getLogger("Profinet")
+
+    @Provides
+    @Reusable
+    fun provideGeocoder(@ApplicationContext context: Context): Geocoder =
+        Geocoder(context, Locale("ru", "RU"))
 }

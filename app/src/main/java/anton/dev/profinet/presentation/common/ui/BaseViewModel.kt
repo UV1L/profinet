@@ -1,8 +1,8 @@
 package anton.dev.profinet.presentation.common.ui
 
 import android.annotation.SuppressLint
-import android.app.Application
 import android.content.Context
+import android.os.Bundle
 import androidx.annotation.CallSuper
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
@@ -11,9 +11,11 @@ import androidx.lifecycle.LifecycleRegistry
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavArgs
 import anton.dev.profinet.presentation.common.navigation.NavEvent
 import anton.dev.profinet.presentation.common.navigation.NavEventsHandler
 import anton.dev.profinet.presentation.common.navigation.ViewEvent
+import anton.dev.profinet.presentation.common.navigation.navArgsLazy
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
@@ -37,6 +39,8 @@ abstract class BaseViewModel : ViewModel(),
     @Inject
     @ApplicationContext
     lateinit var context: Context
+
+    var arguments: Bundle? = null
 
     private val lifecycleRegistry by lazy { LifecycleRegistry(this) }
 
@@ -62,7 +66,7 @@ abstract class BaseViewModel : ViewModel(),
         viewModelLifecycleOwner.lifecycleScope.launchWhenStarted { initialize() }
     }
 
-    open fun initialize() = Unit
+    open fun initialize(): Any = Unit
 
     fun onBackPressed() = postEvent(NavEvent.Back)
 
@@ -73,4 +77,6 @@ abstract class BaseViewModel : ViewModel(),
     fun <T : Any> subscribeOnResult(requestCode: Int, callback: (T) -> Unit) {
         eventsHandler.subscribeOnResult(this, requestCode, callback)
     }
+
+    inline fun <reified Args : NavArgs> navArgs() = lazy { navArgsLazy<Args>(arguments) }
 }

@@ -64,7 +64,6 @@ dependencies {
     // FIREBASE
     implementation platform('com.google.firebase:firebase-bom:31.4.0')
     implementation 'com.google.firebase:firebase-database-ktx'
-//    implementation 'com.google.firebase:firebase-auth-ktx'
 
     implementation 'com.firebaseui:firebase-ui-auth:7.2.0'
     implementation 'com.google.android.gms:play-services-auth:20.4.1'
@@ -72,6 +71,7 @@ dependencies {
     // LOCATION
     implementation 'com.google.android.gms:play-services-location:16.0.0'
     implementation 'com.mapbox.search:mapbox-search-android-ui:1.0.0-rc.3'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
 }
 
 kapt {

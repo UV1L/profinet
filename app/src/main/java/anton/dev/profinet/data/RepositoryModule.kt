@@ -1,7 +1,7 @@
-package anton.dev.profinet.presentation.data
+package anton.dev.profinet.data
 
-import anton.dev.profinet.presentation.domain.repositories.CustomerRepository
-import anton.dev.profinet.presentation.domain.repositories.ServicesRepository
+import anton.dev.profinet.domain.repositories.CustomerRepository
+import anton.dev.profinet.domain.repositories.ServicesRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

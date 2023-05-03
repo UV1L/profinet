@@ -1,4 +1,4 @@
-package anton.dev.profinet.presentation.domain.models
+package anton.dev.profinet.domain.models
 
 import androidx.annotation.IntRange
 import java.util.*

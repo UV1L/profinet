@@ -1,6 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:gravity="center"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/customer_settings_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <anton.dev.uikit.text.BaseTextView
+            android:id="@+id/customer_settings_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_3"
+            android:text="@string/customer_settings_title"
+            app:layout_constraintTop_toTopOf="parent"
+            app:textStyle="PRIMARY" />
+
+        <androidx.appcompat.widget.AppCompatCheckedTextView
+            android:id="@+id/customer_settings_is_performer_checkbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_4"
+            android:checkMark="@drawable/baseline_check_box_blank_24"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/baloo_cyrillic"
+            android:gravity="center_vertical"
+            android:padding="@dimen/space_3"
+            android:text="@string/customer_settings_i_am_performer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/customer_settings_title" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/customer_settings_qualifications_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/customer_settings_is_performer_checkbox"
+            tools:itemCount="4"
+            tools:listitem="@layout/li_qualification" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/customer_settings_save_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_6"
+            android:layout_marginEnd="@dimen/space_6"
+            android:layout_marginBottom="@dimen/space_2"
+            android:backgroundTint="@color/colorAccent"
+            android:text="@string/customer_settings_save"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ProgressBar
+        android:id="@+id/customer_settings_pb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</LinearLayout>

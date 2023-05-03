@@ -79,6 +79,18 @@
             app:layout_constraintTop_toBottomOf="@id/main_screen_customers_title"
             tools:listitem="@layout/li_customer" />
 
+        <anton.dev.uikit.text.BaseTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/main_screen_customers_title"
+            android:paddingStart="@dimen/space_3"
+            android:paddingTop="@dimen/space_6"
+            android:paddingEnd="@dimen/space_3"
+            android:paddingBottom="@dimen/space_4"
+            android:text="@string/nothing_found"
+            app:textStyle="SECONDARY"
+            android:textColor="@color/colorPrimaryVariant" />
+
         <View
             android:layout_width="@dimen/space_4"
             android:layout_height="0dp"

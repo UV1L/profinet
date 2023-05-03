@@ -33,7 +33,6 @@ class TextWithValue @JvmOverloads constructor(
     private val valueTextView = BaseTextView(context).apply {
         setTextSize(TypedValue.COMPLEX_UNIT_SP, 10f)
         ellipsize = TextUtils.TruncateAt.END
-        maxLines = 1
     }
 
     init {

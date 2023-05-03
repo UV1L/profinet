@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.os.Parcelable
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavArgs
+import androidx.navigation.NavArgsLazy
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navOptions
@@ -52,4 +54,8 @@ fun interface NavEvent {
     }
 
     fun navigate(fragment: BaseFragment<*>)
+}
+
+inline fun <reified Args : NavArgs> navArgsLazy(args: Bundle?) = NavArgsLazy(Args::class) {
+    args ?: throw IllegalStateException("Fragment has null arguments")
 }

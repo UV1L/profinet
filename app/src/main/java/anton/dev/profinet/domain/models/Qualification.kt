@@ -1,20 +1,33 @@
-package anton.dev.profinet.presentation.domain.models
+package anton.dev.profinet.domain.models
 
+import android.os.Parcelable
 import androidx.annotation.IntRange
+import kotlinx.parcelize.Parcelize
 import java.util.*
 
-enum class Qualification {
+enum class Qualification(val displayName: String) {
 
-    Programmer,
-    Electric,
-    Metallurgist
+    Programmer("Программист"),
+    Electric("Электрик"),
+    Loader("Грузчик"),
+    Plumber("Сантехник")
 }
 
+@Parcelize
 data class QualificationParams(
     val qualification: Qualification,
     @IntRange(from = 0, to = 10)
-    val level: Int,
+    var level: Int,
+    var experience: Int,
+) : Parcelable {
 
-    //можно использовать как стаж, чтобы вычислить сколько лет уже есть такая квалификация
-    val carierStart: Date
-)
+    companion object {
+        fun empty() = Qualification.values().map {
+            QualificationParams(
+                qualification = it,
+                level = 0,
+                experience = 0
+            )
+        }
+    }
+}

@@ -1,13 +1,17 @@
 package anton.dev.profinet.presentation.create_account.ui
 
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import anton.dev.profinet.R
 import anton.dev.profinet.databinding.FragmentCreateAccountBinding
 import anton.dev.profinet.presentation.common.ui.BaseHiltFragment
 import anton.dev.profinet.presentation.create_account.vm.CreateAccountViewModel
+import java.util.Calendar
+import java.util.Date
 
 internal class CreateAccountFragment : BaseHiltFragment() {
 
@@ -15,7 +19,10 @@ internal class CreateAccountFragment : BaseHiltFragment() {
     override val layout: Int = R.layout.fragment_login
     override val binding: FragmentCreateAccountBinding by lazy { FragmentCreateAccountBinding.inflate(layoutInflater) }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         binding.fioInput.doOnTextChanged { text, _, _, _ ->
             viewModel.fio.value = text.toString()
         }
@@ -24,6 +31,9 @@ internal class CreateAccountFragment : BaseHiltFragment() {
         }
         binding.passwordInput.doOnTextChanged { text, _, _, _ ->
             viewModel.password.value = text.toString()
+        }
+        binding.createAccountBirthdayPicker.setOnDateChangedListener { _, year, monthOfYear, dayOfMonth ->
+            viewModel.birthday.value = Calendar.getInstance().apply { set(year, monthOfYear, dayOfMonth) }.time
         }
 
         binding.fioInput.setOnFocusChangeListener { _, hasFocus ->

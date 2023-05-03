@@ -1,7 +1,7 @@
-package anton.dev.profinet.presentation.domain.repositories
+package anton.dev.profinet.domain.repositories
 
-import anton.dev.profinet.presentation.domain.models.Customer
-import anton.dev.profinet.presentation.domain.models.Service
+import anton.dev.profinet.domain.models.Customer
+import anton.dev.profinet.domain.models.Service
 import kotlinx.coroutines.flow.Flow
 
 interface ServicesRepository {
@@ -24,7 +24,7 @@ interface CustomerRepository {
      *
      * Вернет текушего кастомера
      */
-    suspend fun currentCustomer(): Customer
+    suspend fun currentCustomer(): Customer?
 
     fun getCustomers(filter: (Customer) -> Boolean = { true }): Flow<List<Customer>>
 
@@ -33,4 +33,6 @@ interface CustomerRepository {
      * Если такого [customer] нет, то создаст его
      */
     suspend fun createOrUpdateCustomer(customer: Customer)
+
+    suspend fun isCustomerExist(): Boolean
 }

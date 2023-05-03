@@ -1,6 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatCheckedTextView
+        android:id="@+id/li_qualification_checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checkMark="@drawable/baseline_check_box_blank_24"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/baloo_cyrillic"
+        android:gravity="center_vertical"
+        android:padding="@dimen/space_4"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Электрик" />
+
+    <LinearLayout
+        android:id="@+id/li_qualification_level_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/li_qualification_checkbox">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <anton.dev.uikit.text.BaseTextView
+                android:id="@+id/li_qualification_level_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_6"
+                android:text="@string/customer_settings_level"
+                app:textStyle="HINT" />
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/li_qualification_level_slider"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_6"
+                android:stepSize="1.0"
+                android:valueFrom="0.0"
+                android:valueTo="10.0"
+                app:thumbColor="@color/colorAccent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/space_6">
+
+            <anton.dev.uikit.text.BaseTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/customer_experience" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/li_qualification_experience"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLines="1" />
+        </LinearLayout>
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

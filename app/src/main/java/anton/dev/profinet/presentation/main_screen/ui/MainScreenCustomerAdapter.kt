@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
+import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.AccelerateInterpolator
@@ -11,9 +12,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import anton.dev.profinet.databinding.LiCustomerBinding
+import anton.dev.profinet.presentation.main_screen.vm.OnCustomerClick
 import anton.dev.profinet.presentation.main_screen.vm.model.CustomerListItem
 
-internal class MainScreenCustomerAdapter :
+internal class MainScreenCustomerAdapter(private val onCustomerClick: OnCustomerClick) :
     ListAdapter<CustomerListItem, MainScreenCustomerAdapter.CustomerViewHolder>(DiffCallback()) {
 
     class CustomerViewHolder(
@@ -34,14 +36,19 @@ internal class MainScreenCustomerAdapter :
         holder.binding.liCustomerName.text = name
         holder.binding.liCustomerRatingCounter.text = "%.2f".format(rating)
         holder.binding.liCustomerAge.value = age.toString()
-        holder.binding.liCustomerExperience.value = experience.toString()
-        holder.binding.liCustomerSpeciality.value = speciality
+        holder.binding.liCustomerSpeciality.value = qualificationParams.joinToString(", ") { it.qualification.displayName }
 
         holder.binding.root.setOnTouchListener { v, event ->
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> shrinkCard(v)
-                else -> expandCard(v)
+                MotionEvent.ACTION_UP -> expandCard(v).also { v.performClick() }
+                MotionEvent.ACTION_CANCEL -> expandCard(v)
+                else -> true
             }
+        }
+
+        holder.binding.root.setOnClickListener {
+            onCustomerClick.onClick(this)
         }
     }
 
@@ -53,7 +60,7 @@ internal class MainScreenCustomerAdapter :
             interpolator = AccelerateDecelerateInterpolator()
         }.start()
 
-        return true
+        return false
     }
 
     private fun expandCard(view: View): Boolean {

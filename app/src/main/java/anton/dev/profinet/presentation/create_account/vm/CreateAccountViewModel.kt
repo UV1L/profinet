@@ -10,7 +10,8 @@ import anton.dev.profinet.presentation.common.ext.plus
 import anton.dev.profinet.presentation.common.navigation.NavEvent
 import anton.dev.profinet.presentation.common.navigation.ViewEvent
 import anton.dev.profinet.presentation.common.ui.BaseViewModel
-import anton.dev.profinet.presentation.data.Repository
+import anton.dev.profinet.data.Repository
+import anton.dev.profinet.domain.models.Customer
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
@@ -18,6 +19,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.util.Date
 import javax.inject.Inject
 
 @HiltViewModel
@@ -27,22 +29,22 @@ internal class CreateAccountViewModel @Inject constructor(
     OnCompleteListener<AuthResult> {
 
     private val auth = FirebaseAuth.getInstance()
-    private val canClick = MutableLiveData(true)
 
     val fio = MutableLiveData("")
     val email = MutableLiveData("")
     val password = MutableLiveData("")
+    val birthday = MutableLiveData<Date>()
     val buttonEnabled = (fio + email + password).map {
         isFioCorrect()
                 && it.first?.second?.isNotEmpty() == true
                 && it.second?.isNotEmpty() == true
-    }
+    } as MutableLiveData
 
     fun createAccount() {
-        if (canClick.value == true) {
+        if (buttonEnabled.value == true) {
             auth.createUserWithEmailAndPassword(email.value!!, password.value!!)
                 .addOnCompleteListener(this)
-            canClick.value = false
+            buttonEnabled.value = false
         }
     }
 
@@ -55,9 +57,15 @@ internal class CreateAccountViewModel @Inject constructor(
         NavEvent.To(R.id.action_global_to_mainScreenFragment, inclusive = true)
     )
 
-    private fun updateCustomer() {
+    private fun updateCustomer() = with(auth.currentUser!!) {
         viewModelScope.launch {
-            val customer = repo.currentCustomer()
+            repo.createOrUpdateCustomer(
+                Customer(
+                    id = uid,
+                    name = displayName!!,
+                    birthday = birthday.value
+                )
+            )
         }
     }
 
@@ -72,10 +80,11 @@ internal class CreateAccountViewModel @Inject constructor(
                     updateCustomer()
                     toMainScreen()
                 }
+                else postEvent(ViewEvent.ShowError())
             }
         } else {
             postEvent(ViewEvent.ShowError())
         }
-        canClick.value = true
+        buttonEnabled.value = true
     }
 }

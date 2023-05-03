@@ -1,7 +1,7 @@
-package anton.dev.profinet.presentation.data.mapper
+package anton.dev.profinet.data.mapper
 
-import anton.dev.profinet.presentation.data.model.ServiceNet
-import anton.dev.profinet.presentation.domain.models.Service
+import anton.dev.profinet.data.model.ServiceNet
+import anton.dev.profinet.domain.models.Service
 
 val Service.asNet: ServiceNet
     get() = ServiceNet(

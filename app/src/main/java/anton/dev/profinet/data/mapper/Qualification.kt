@@ -1,8 +1,8 @@
-package anton.dev.profinet.presentation.data.mapper
+package anton.dev.profinet.data.mapper
 
-import anton.dev.profinet.presentation.data.model.QualificationParamsNet
-import anton.dev.profinet.presentation.domain.models.Qualification
-import anton.dev.profinet.presentation.domain.models.QualificationParams
+import anton.dev.profinet.data.model.QualificationParamsNet
+import anton.dev.profinet.domain.models.Qualification
+import anton.dev.profinet.domain.models.QualificationParams
 
 val Qualification.asString: String get() = name
 
@@ -12,12 +12,12 @@ val QualificationParams.asNet: QualificationParamsNet
     get() = QualificationParamsNet(
         qualification = qualification.asString,
         level = level,
-        carierStart = carierStart.asString
+        experience = experience
 )
 
 val QualificationParamsNet.fromNet: QualificationParams
     get() = QualificationParams(
         qualification = qualification.asQualification,
         level = level!!,
-        carierStart = carierStart.asDate!!
+        experience = experience!!
     )

@@ -1,7 +1,7 @@
-package anton.dev.profinet.presentation.domain.get_customer
+package anton.dev.profinet.domain.get_customer
 
-import anton.dev.profinet.presentation.data.Repository
-import anton.dev.profinet.presentation.domain.models.Customer
+import anton.dev.profinet.data.Repository
+import anton.dev.profinet.domain.models.Customer
 import javax.inject.Inject
 
 internal interface GetCurrentCustomerCase {

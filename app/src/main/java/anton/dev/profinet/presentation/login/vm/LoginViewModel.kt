@@ -11,9 +11,9 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
-import anton.dev.profinet.presentation.data.Repository
-import anton.dev.profinet.presentation.domain.repositories.CustomerRepository
-import anton.dev.profinet.presentation.domain.repositories.ServicesRepository
+import anton.dev.profinet.data.Repository
+import anton.dev.profinet.domain.repositories.CustomerRepository
+import anton.dev.profinet.domain.repositories.ServicesRepository
 import com.google.firebase.auth.FirebaseUser
 import dagger.Binds
 import dagger.Module
@@ -22,6 +22,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -62,18 +63,21 @@ internal class LoginViewModel @Inject constructor(
     )
 
     private fun updateCustomer() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.Main) {
             val customer = repo.currentCustomer()
         }
     }
 
     override fun onComplete(authTask: Task<AuthResult>) {
         canClick.value = true
-        if (authTask.isSuccessful) {
-            updateCustomer()
-            toMainScreen()
-        } else {
-            showInvalidLoginOrPasswordError()
+        launch {
+            if (authTask.isSuccessful && repo.isCustomerExist()) {
+                updateCustomer()
+                toMainScreen()
+            } else {
+                auth.currentUser?.delete()
+                showInvalidLoginOrPasswordError()
+            }
         }
     }
 }
